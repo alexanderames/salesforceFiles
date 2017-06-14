@@ -1,0 +1,99 @@
+<aura:component controller="ImController">
+	<aura:attribute name="products" type="Product[]"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<aura:attribute name="newStock"
+					type="Stock__c"
+					default="{ 'sobjectType': 'Stock__c',
+								'Location_Retail_Price__c': 0,
+								'unknown_custom_field': 0,
+								'Stock_Shipment_Quantity__c': 0,
+	}"/>
+
+	<aura:registerEvent name="addStock" type="c:addStockEvent"/>
+
+	<form class="slds-form--stacked">
+		
+<div class="slds-form-element">
+  <label class="slds-form-element__label" for="combobox-unique-id">Product:</label>
+  <div class="slds-form-element__control">
+    <div class="slds-combobox_container slds-size_small">
+      <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-picklist" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+          <input type="text" class="slds-input slds-combobox__input" id="combobox-unique-id" aria-controls="listbox-unique-id" autocomplete="off" role="textbox" placeholder="Select an Option" readonly=""/>
+          <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right" title="Description of icon when needed">
+          	<lightning:icon iconName="utility:down" size="x-small" />
+            <span class="slds-assistive-text">SELECT</span>
+          </span>
+        </div>
+        <div id="listbox-unique-id" role="listbox">
+          <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" role="presentation">
+          <aura:iteration items="{!v.products}" var="product">
+            <li role="presentation" class="slds-listbox__item">
+              <span id="listbox-option-unique-id-01" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-media_center" role="option">
+                <span class="slds-media__figure">
+                	<lightning:icon iconName="utility:check" size="x-small"/>
+                </span>
+                <span class="slds-media__body">
+                  <span class="slds-truncate" title="Name">{!product.Name}</span>
+                </span>
+              </span>
+            </li>
+          </aura:iteration>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="retailPrice" label="Location Retail Price"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Location_Retail_Price__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="stockQuantity" label="Current Stock"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.unknown_custom_field}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="stockShipment" label="Shipment Needs"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Stock_Shipment_Quantity__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+			Location Picklist
+			</div>
+		</div>
+
+    <div class="slds-form-element">
+        <ui:button label="Create Product Stock"
+            class="slds-button slds-button--brand"
+            press="{!c.submitForm}"/>
+    </div>
+
+	</form>
+	<div class="slds-card__body">
+      <div id="list" class="row">
+          <aura:iteration items="{!v.stocks}" var="stocks">
+              <c:productStockItem stock="{!stock}"/>
+          </aura:iteration>
+      </div>
+  </div>
+</aura:component>

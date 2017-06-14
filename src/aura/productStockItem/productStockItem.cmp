@@ -1,0 +1,30 @@
+<aura:component >
+	<aura:attribute name="stock" type="Stock__c" required="true"/>
+
+	Product:
+		<ui:outputText value="{!stock.Product__r.Name}"/>
+
+	Category:
+		<ui:outputText value="{!stock.Product__r.Product_Category__c}"/>
+
+	Code:
+		<ui:outputText value="{!stock.ProductCode}"/>
+
+	Wholesale Price:
+		<ui:outputText value="{!stock.Wholesale_Price__c}"/>
+
+	Suggested Retail Price:
+		<ui:outputText value="{!stock.Suggested_Retail_Price__c}"/>
+
+	Location Retail Price:
+		<ui:outputText value="{!stock.Location_Retail_Price__c}"/>
+
+	Current Stock:
+		<ui:outputText value="{!stock.Current_Stock_Quantity__c}"/>
+
+	Shipment Needs:
+		<ui:outputText value="{!stock.Stock_Shipment_Quantity__c}"/>
+
+	Location:
+		<ui:outputText value="{!stock.Location__r.Name}"/>
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component >
+    <aura:attribute name="edit" type="Boolean"/>
+    <aura:if isTrue="{!v.edit}">
+        <ui:button label="Edit" />
+        <aura:set attribute="else">
+            <ui:button label="Edit" disabled="true"/>
+        </aura:set>
+    </aura:if>
+</aura:component>

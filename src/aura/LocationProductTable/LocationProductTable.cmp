@@ -1,0 +1,47 @@
+<aura:component controller="ImController">
+	<aura:attribute name="stock" type="Product2[]" />
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<table class="slds-table slds-table--bordered slds-table--fixed-layout">
+		<thead>
+			<tr class="slds-text-heading--label">
+				<th scope="col">
+					<div class="slds-truncate" title="Name">Name</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="Category">Category</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="Code">Code</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="Wholesale">Wholesale</div>
+				</th>
+				<th scope="col">
+					<div class="slds-truncate" title="MSRP">MSRP</div>
+				</th>
+			</tr>
+		</thead>
+	<tbody>
+      <aura:iteration items="{!v.stock}" var="stock">
+        <tr>
+          <td>
+          	<div class="slds-truncate" title="{!Name}">{!stock.Name}</div>
+          </td>
+          <td>
+          	<div class="slds-truncate" title="{!Product_Category__c}">{!stock.Product_Category__c}</div>
+          </td>
+          <td>
+          	<div class="slds-truncate" title="{!ProductCode}">{!stock.ProductCode}</div>
+          </td>
+          <td>
+          	<div class="slds-truncate" title="{!Wholesale_Price__c}"><ui:outputCurrency value="{!stock.Wholesale_Price__c}"/></div>
+          </td>
+          <td>
+          	<div class="slds-truncate" title="{!Suggested_Retail_Price__c}"><ui:outputCurrency value="{!stock.Suggested_Retail_Price__c}"/></div>
+          </td>
+        </tr>
+      </aura:iteration>
+    </tbody>
+	</table>
+</aura:component>

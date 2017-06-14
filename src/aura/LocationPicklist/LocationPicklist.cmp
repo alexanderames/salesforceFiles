@@ -1,0 +1,17 @@
+<aura:component controller="ImController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+	<aura:attribute name="location" type="Location__c"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:registerEvent name="appEvent" type="c:SetLocation"/>
+
+	<div class="slds">
+		<h1 class="title">Choose Location:</h1>
+			<ui:inputSelect class="dynamic" aura:id="InputSelectDynamic" value="{!v.location}" change="{!c.fireAppEvent}"/>
+	</div>
+
+	<aura:if isTrue="{!v.location}">
+		<c:NewRace location="{!v.location}"/>
+	<aura:set attribute="else">
+      No location selected.
+    </aura:set>
+  </aura:if>
+</aura:component>

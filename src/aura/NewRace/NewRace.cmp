@@ -1,0 +1,50 @@
+<aura:component controller="ImController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+  
+  <aura:attribute name="newStock" type="String[]"/>
+  <aura:attribute name="selection" type="Decimal"/>
+  <aura:attribute name="location" type="Location__c"/>
+  <aura:attribute name="categoryOptions" type="Product2[]"/>
+  <aura:attribute name="productOptions" type="Product2[]"/>
+  <aura:attribute name="sObjectId" type="Id" description="The Id of the selected SObject." />
+  <aura:handler name="init" value="{!this}" action="{!c.handleInit}"/>
+  <aura:registerEvent name="appEvent" type="c:AddToList"/>
+
+  <!--   Select Product -->
+  <div class="slds">
+    <h1>Product Catalog</h1>
+    <!-- Controlling picklist -->
+    <div>
+        <h2>Category</h2>
+        <select aura:id="category" onchange="{!c.handleCategoryChange}" value="{!v.newStock.Product_Category__c}">
+            <option>--None--</option>
+            <aura:iteration items="{!v.categoryOptions}" var="option">
+                <option value="{!option.value}">{!option.label}</option>
+            </aura:iteration>
+        </select>
+    </div>
+
+    <!-- Dependent Product picklist -->
+    <div>
+        <h2>Product</h2>
+        <select aura:id="product" id="one-id" onchange="{!c.handleProductChange}" value="{!v.newStock.Product2}">
+            <option>--None--</option>
+            <aura:iteration items="{!v.productOptions}" var="option">
+                <option value="{!option.value}">{!option.label}</option>
+            </aura:iteration>
+        </select>
+    </div>
+    <br/>
+    <!-- Auto-Populated values -->
+    <h2>Suggested Retail:</h2>
+      <ui:outputCurrency />{!v.selection[0].Suggested_Retail_Price__c}<br/>
+    <h2>Wholesale:</h2>
+      <ui:outputCurrency />{!v.selection[0].Wholesale_Price__c}
+    <br/>
+    <h2 class="visible">    
+      <ui:outputText value="{!v.newStock.Location__c}"/>{!v.location}
+    </h2>
+    <!-- button to save stock -->
+      <ui:button label="Submit" press="{!c.createStock}" class="slds-button slds-button--neutral"/>
+
+  </div>
+</aura:component>

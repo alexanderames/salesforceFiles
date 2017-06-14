@@ -1,0 +1,6 @@
+<aura:component >
+	<aura:attribute name="item" type="Camping_Item__c" required="true"/>
+    <c:campingHeader />
+    <c:campingList />
+    <c:campingListItem />
+</aura:component>

@@ -1,0 +1,18 @@
+{
+    "projectName": "beginAgain",
+    "username": "aames@cunning-goat-451164.com",
+    "id": "ecbc0870-4faa-11e7-8a25-7bd5bed5a94b",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://ames-dev-ed.my.salesforce.com",
+    "workspace": "/Users/doubleA/Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "AuraDefinitionBundle",
+        "StaticResource"
+    ]
+}

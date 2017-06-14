@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event fired when location is selected">
+	<aura:attribute name="location" type="Id"/>
+</aura:event>

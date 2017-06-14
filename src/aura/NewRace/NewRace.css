@@ -1,0 +1,7 @@
+.THIS h1 {
+    text-align: center;
+    font-size: 24px;
+}
+.THIS .visible {
+	visibility: hidden;
+}

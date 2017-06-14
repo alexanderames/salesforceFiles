@@ -1,0 +1,49 @@
+<aura:component controller="ImController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    <aura:attribute name="product" type="String[]" />
+    <aura:handler name="deleteStockItem" event="c:deleteStockItem" action="c.deleteEvent"/>
+    <tbody>
+        <tr>
+            <td>
+                <div class="slds-truncate slds-align--absolute-center">
+                    <ui:inputCheckbox change="{!c.handleUpdate}" value="{!v.product.Order__c}"/>
+                </div>
+            </td>
+            <td>
+                <div class="slds-truncate">
+                    <ui:outputText class="slds-text-heading--label" value="{!v.product.Product__r.Name}"/>
+                </div>
+            </td>
+            <td>
+                <div class="slds-truncate">
+                    <ui:outputText value="{!v.product.Product__r.Product_Category__c}"/>
+                </div>
+            </td>
+            <td>
+                <div class="slds-truncate">
+                    <ui:outputCurrency value="{!v.product.Product__r.Wholesale_Price__c}"/>
+                </div>
+            </td>
+            <td>
+                <div class="slds-truncate">
+                    <ui:outputCurrency value="{!v.product.Product__r.Suggested_Retail_Price__c}"/>
+                </div>
+            </td>
+            <td>
+                <div class="slds-truncate">
+                    <ui:outputNumber class="slds-text-heading--label" value="{!v.product.Current_Quantity__c}"/>
+                </div>
+            </td>
+            <td class="slds-cell-edit">
+                <div class="slds-truncate">
+                    <ui:inputNumber class="slds-text-heading--label" value="{!v.product.Stock_Shipment_Quantity__c}"/>
+                </div>
+            </td>
+            <td class="slds-cell-edit">
+                <div class="slds-truncate">
+                    <ui:inputCurrency value="{!v.product.Location_Retail_Price__c}"/>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    
+</aura:component>

@@ -1,0 +1,33 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader">
+    <aura:attribute name="showDropdown" type="Boolean" default="false" access="private" />
+    <aura:attribute name="options" type="Object[]" access="private" />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+	<button class="slds-button slds-button--neutral" onclick="{!c.toggleDropdown}">Selection
+        <lightning:icon iconName="utility:chevrondown" size="small" alternativeText="Opens dropdown"/>
+	</button>
+    <aura:if isTrue="{!v.showDropdown eq true}">
+    	<div aura:id="dropdown" class="slds-dropdown slds-dropdown--left"> 
+			<ul class="slds-dropdown__list" role="menu">
+				<aura:iteration items="{!v.options}" var="option">
+                    <li class="slds-dropdown__item slds-is-selected" role="menuitemcheckbox" aria-selected="true">
+                        <lightning:input label="{!option.label}" type="checkbox" onchange="{!c.handleClick}" checked="{!option.selected}" />
+                    </li>
+                </aura:iteration>
+			</ul>
+    	</div>
+        <aura:set attribute="else">
+        	<!-- multiple selected -->
+            <ul class="slds-pill_container slds-pill_container--bare" role="menu">
+				<aura:iteration items="{!v.options}" var="option">
+                    <aura:if isTrue="{!option.selected eq true}">
+                    <li class="slds-pill" role="menuitemcheckbox" aria-selected="true">
+                        <lightning:input class="slds-pill__label" label="{!option.label}" type="checkbox" onchange="{!c.handleClick}" checked="{!option.selected}" />
+                    </li>
+                    </aura:if>
+                    
+                </aura:iteration>
+			</ul>
+        </aura:set>
+    </aura:if>
+</aura:component>

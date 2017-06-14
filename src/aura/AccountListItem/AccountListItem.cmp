@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:registerEvent name="accountSelected" type="c:AccountSelected"/>
+    <li><a onclick="{!c.accountSelected}">{!v.account.Name}</a></li>
+    <aura:attribute name="account" type="Account"/>
+    <li><a>{!v.account.Name}</a></li>
+</aura:component>

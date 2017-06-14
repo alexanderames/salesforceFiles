@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName" access="global">
+	<c:IPForm />
+
+	<c:LocationPicklist />	
+
+	<c:LocationProductTable />
+
+</aura:component>

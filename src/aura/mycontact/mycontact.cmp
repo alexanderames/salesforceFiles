@@ -1,0 +1,4 @@
+<aura:component >
+    <aura:attribute name="contact" type="Contact"/>
+    <ui:outputText value="{!v.contact.Name}" />
+</aura:component>

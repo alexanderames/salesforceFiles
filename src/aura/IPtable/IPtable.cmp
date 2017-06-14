@@ -1,0 +1,27 @@
+<aura:component controller="ImController"
+	implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+	
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <aura:handler name="addStock" event="c:addStockEvent"
+   	action="{!c.handleAddStock }"/>
+
+    <aura:attribute name="Stocks" type="Stock__c[]"/>
+
+       <!-- NEW ITEM FORM -->
+    <div class="slds-col slds-col--padded slds-p-top--large">
+
+        <c:IPForm />
+
+    </div>
+    <!-- / NEW ITEM FORM -->    
+   
+
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+            <h3 class="slds-text-heading--small">Items</h3>
+        </header>
+        
+        
+    </div>
+</aura:component>

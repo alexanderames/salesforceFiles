@@ -1,0 +1,53 @@
+<aura:component controller="ImController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:hasSObjectName">
+    <aura:attribute name="products" type="Stock__c[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:AddToList" action="{!c.handleAddToList}"/>
+    <aura:handler event="c:SetLocation" action="{!c.handlePicklist}"/> 
+    <aura:registerEvent name="deleteStockItem" type="c:deleteStockItem"/> 
+    
+    <div class="slds">
+        <h1>Stocked Inventory:</h1><br/>
+        <div class="slds-table_edit">
+        <table class="slds-table slds-table--bordered slds-table--fixed-layout">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th>
+                        <div class="slds-truncate slds-align--absolute-center" title="Select">
+                            <ui:inputCheckbox aura:id="masterCheckbox" change="{!c.updateStock}"/>
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Product Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Category</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Wholesale Price</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">MSRP</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Current Quantity</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Stock Shipment Quantity</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate">Location Retail Price</div>
+                    </th>
+                </tr>
+            </thead>
+            <aura:iteration items="{!v.products}" var="product">
+                <c:Race product="{!product}" />
+            </aura:iteration>
+        </table>
+        </div>
+        <!-- save/delete buttons -->
+        <div class="slds-button-group" role="group">
+            <ui:button class="slds-button" press="{!c.save}">SAVE</ui:button>
+            <ui:button class="slds-button" press="{!c.delete}">DELETE</ui:button>
+        </div>
+    </div>
+</aura:component>

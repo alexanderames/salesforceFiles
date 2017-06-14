@@ -1,0 +1,128 @@
+<aura:component controller="ImController" implements="force:appHostable">
+  <ltng:require styles="/resource/slds090/assets/styles/salesforce-lightning-design-system.min.css"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+	<aura:attribute name="newStock"
+					type="Stock__c"
+					default="{ 'sobjectType': 'Stock__c',
+								'Product__r.Name': '',
+								'Product__r.Product_Category__c': '',
+								'Product__r.ProductCode': 0,
+								'Product__r.Wholesale_Price__c': 0,
+								'Product__r.Suggested_Retail_Price__c': 0,
+								'Location_Retail_Price__c': 0,
+								'unknown_custom_field': 0,
+								'Stock_Shipment_Quantity__c': 0,
+                             'Location__r.Name': ''}"/>
+
+  <!-- Input Form using components -->
+  <div class="container">
+    <form class="slds-form--stacked">
+       <div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="stockName" label="Name of Product"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Product__r.Name}"
+											required="true"/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="category" label="Product Category"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Product__r.Product_Category__c}"
+											required="true"/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="ProductCode" label="Product Code"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Product__r.ProductCode}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="wholesale" label="Wholesale Price"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Product__r.Wholesale_Price__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="suggestedPrice" label="Suggested Retail Price"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Product__r.Suggested_Retail_Price__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="retailPrice" label="Location Retail Price"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Location_Retail_Price__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="stockQuantity" label="Current Stock"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.unknown_custom_field}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="stockShipment" label="Shipment Needs"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Stock_Shipment_Quantity__c}"
+											/>
+			</div>
+		</div>
+
+		<div class="slds-form-element slds-is-required">
+			<div class="slds-form-element__control">
+				<ui:inputText aura:id="location" label="Location"
+											class="slds-input"
+											labelClass="slds-form-element__label"
+											value="{!v.newStock.Location__r.Name}"
+											/>
+			</div>
+		</div>
+          <div class="slds-form-element">
+            <ui:button label="Submit" 
+                       class="slds-button slds-button--neutral"
+                       labelClass="label"
+                       press="{!c.getStocks}"/>
+           </div>
+    </form>
+  </div><!-- ./container-->
+
+          <!-- Display  records -->
+          <!--<div class="container slds-p-top\medium">
+              <div id="list" class="row">
+                    <aura:iteration items="{!v.stocks}" var="stock">
+                    <c:productStockItem stock="{!stock}"/>
+                </aura:iteration>
+              </div>
+          </div> -->
+</aura:component>
